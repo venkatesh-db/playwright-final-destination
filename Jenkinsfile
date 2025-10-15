@@ -1,4 +1,5 @@
 
+
 pipeline {
   agent any
 
@@ -20,9 +21,32 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('Parallel Build & Test') {
+      parallel {
+        stage('Chromium') {
+          steps {
+            bat 'npx playwright test --project=chromium'
+          }
+        }
+
+        stage('Firefox') {
+          steps {
+            bat 'npx playwright test --project=firefox'
+          }
+        }
+      }
+    }
+
+    stage('Publish Report') {
       steps {
-        bat 'npm test'
+        publishHTML(target: [
+          reportDir: 'playwright-report',
+          reportFiles: 'index.html',
+          reportName: 'Playwright Test Report',
+          alwaysLinkToLastBuild: true,
+          keepAll: true,
+          allowMissing: true
+        ])
       }
     }
   }

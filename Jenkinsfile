@@ -27,21 +27,6 @@ pipeline {
     }
 
     
-
-    stage('Publish HTML Report') {
-      steps {
-        publishHTML(target: [
-          allowMissing: true,
-          keepAll: true,
-          alwaysLinkToLastBuild: true,
-          reportDir: 'playwright-report',
-          reportFiles: 'index.html',
-          reportName: 'Playwright Test Report'
-        ])
-      }
-    }
-  }
-
   post {
     always {
       archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true

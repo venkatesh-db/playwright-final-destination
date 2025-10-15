@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                      // Use modern JS features
+    "module": "commonjs",                    // Playwright uses CommonJS by default
+    "strict": true,                          // Enable all strict type-checking
+    "esModuleInterop": true,                 // Allow import/export compatibility
+    "skipLibCheck": true,                    // Skip library type checking for speed
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+
+    // 🔹 Enable decorators support
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    // Output and root settings
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src/**/*.ts"],                // All TypeScript source files
+  "exclude": ["node_modules", "dist"]        // Exclude compiled and dependency folders
+}

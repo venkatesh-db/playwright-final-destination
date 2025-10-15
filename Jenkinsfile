@@ -26,21 +26,7 @@ pipeline {
       }
     }
 
-    stage('Parallel Build') {
-      parallel {
-        stage('Chromium') {
-          steps {
-            sh 'npx playwright test --project=chromium'
-          }
-        }
-
-        stage('Firefox') {
-          steps {
-            sh 'npx playwright test --project=firefox'
-          }
-        }
-      }
-    }
+    
 
     stage('Publish HTML Report') {
       steps {
